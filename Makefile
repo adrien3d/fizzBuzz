@@ -29,7 +29,7 @@ build: ## build docker image
 	docker build -t $(PROJECT):$(VERSION) .
 
 run: ## build docker image
-	docker run -p 8080:8080 fizzbuzz
+	docker run -p 8080:8080 $(PROJECT):$(VERSION)
 
 version: ## display version
 	@echo $(VERSION)
