@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"sync"
 
+	"github.com/adrien3d/fizzbuzz/fizzbuzz"
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,7 +23,7 @@ func main() {
 	r.GET("/fizzbuzz", fizzBuzzHandler)
 	r.GET("/stats", statsHandler)
 
-	r.Run(":8080") // Start server on port 8080
+	_ = r.Run(":8080") // Start server on port 8080
 }
 
 func fizzBuzzHandler(c *gin.Context) {
@@ -37,7 +38,7 @@ func fizzBuzzHandler(c *gin.Context) {
 		return
 	}
 
-	response := GenerateFizzBuzz(int1, int2, limit, str1, str2)
+	response := fizzbuzz.GenerateFizzBuzz(int1, int2, limit, str1, str2)
 
 	// Track request
 	stats.mu.Lock()
@@ -46,23 +47,6 @@ func fizzBuzzHandler(c *gin.Context) {
 	stats.mu.Unlock()
 
 	c.JSON(http.StatusOK, response)
-}
-
-func GenerateFizzBuzz(int1, int2, limit int, str1, str2 string) []string {
-	result := make([]string, limit)
-	for i := 1; i <= limit; i++ {
-		switch {
-		case i%(int1*int2) == 0:
-			result[i-1] = str1 + str2
-		case i%int1 == 0:
-			result[i-1] = str1
-		case i%int2 == 0:
-			result[i-1] = str2
-		default:
-			result[i-1] = strconv.Itoa(i)
-		}
-	}
-	return result
 }
 
 func statsHandler(c *gin.Context) {
