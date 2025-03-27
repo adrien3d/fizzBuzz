@@ -1,4 +1,4 @@
-module github.com/adrien3d/fizzBuzz
+module github.com/adrien3d/fizzbuzz
 
 go 1.24.0
 
