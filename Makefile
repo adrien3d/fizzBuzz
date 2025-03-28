@@ -31,6 +31,8 @@ build: ## build docker image
 run: ## build docker image
 	docker run -p 8080:8080 $(PROJECT):$(VERSION)
 
+execute: build run ## build and run docker image
+
 version: ## display version
 	@echo $(VERSION)
 
