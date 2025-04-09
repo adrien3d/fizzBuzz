@@ -1,10 +1,10 @@
-package main
+package tests
 
 import (
 	"reflect"
 	"testing"
 
-	"github.com/adrien3d/fizzbuzz/fizzbuzz"
+	"github.com/adrien3d/fizzbuzz/services"
 )
 
 func TestGenerateFizzBuzz(t *testing.T) {
@@ -17,7 +17,7 @@ func TestGenerateFizzBuzz(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		result := fizzbuzz.GenerateFizzBuzz(tt.int1, tt.int2, tt.limit, tt.str1, tt.str2)
+		result := services.GenerateFizzBuzz(tt.int1, tt.int2, tt.limit, tt.str1, tt.str2)
 		if !reflect.DeepEqual(result, tt.expected) {
 			t.Errorf("Expected %v, got %v", tt.expected, result)
 		}
