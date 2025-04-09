@@ -1,6 +1,7 @@
-package fizzbuzz
+package services
 
 import "strconv"
+
 
 func GenerateFizzBuzz(int1, int2, limit int, str1, str2 string) []string {
 	result := make([]string, limit)
